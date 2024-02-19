@@ -104,4 +104,51 @@ contract Crusader{
         }
         return false;
     }
+
+    struct ProductDetails {
+        string name;
+        string[] ingredients;
+        uint[] quantity;
+        string intendedUse;
+        string functionalUse;
+        string manufacturingProcess;
+        string nutritionalBenefits;
+        uint fatPercentage;
+        uint proteinPercentage;
+        uint carbohydratePercentage;
+    }
+
+    ProductDetails[] public products;
+
+    function addProduct(
+        string memory _name,
+        string[] memory _ingredients,
+        uint[] memory _quantity,
+        string memory _intendedUse,
+        string memory _functionalUse,
+        string memory _manufacturingProcess,
+        string memory _nutritionalBenefits,
+        uint _fatPercentage,
+        uint _proteinPercentage,
+        uint _carbohydratePercentage
+    ) public {
+        ProductDetails memory newProduct = ProductDetails({
+            name: _name,
+            ingredients: _ingredients,
+            quantity: _quantity,
+            intendedUse: _intendedUse,
+            functionalUse: _functionalUse,
+            manufacturingProcess: _manufacturingProcess,
+            nutritionalBenefits: _nutritionalBenefits,
+            fatPercentage: _fatPercentage,
+            proteinPercentage: _proteinPercentage,
+            carbohydratePercentage: _carbohydratePercentage
+        });
+
+        products.push(newProduct);
+    }
+
+    function getProduct(uint _index) public view returns (ProductDetails memory) {
+        return products[_index];
+    }
 }
