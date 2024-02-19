@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import contractaddress from "../artifacts/addresses/contract-address.json"
 import { Form, Input, Button, Card, Select } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { Toaster, toast } from "react-hot-toast";
+
 // import Navbar from "../components/Navbar";
 const { ethers } = require("ethers");
 const abi=require('../artifacts/contracts/Crusader.sol/Crusader.json').abi
@@ -64,37 +66,46 @@ const contractABI=abi
             console.error("Error calling funders function: ",error)
           }
 
-      console.log('form ',email)
-      console.log('contract',manufacturer.username)
+    
 		  if (manufacturer.username === values.email && manufacturer.password === values.password) {
-      console.log('form ',email)
-      console.log('contract',manufacturer.email)
+      
 			setRole("manufacturer");
-			  navigate("/manufacturer");
+			toast.success("Login successful!")
+			setTimeout(() => {
+				navigate("/manufacturer");
+			}, 1200); 
+			  
 		  } else if (analyst && analyst.username === values.email && analyst.password === values.password) {
 			setRole("analyst");
-			  navigate("/analyst");
+			setTimeout(() => {
+				navigate("/analyst");
+			}, 1200);
 		  }
          
           else if(safetycommissioner && safetycommissioner.username===values.email && safetycommissioner.password===values.password){
             setRole("safetycommissioner")
-            navigate("/safetycommissioner")
+			setTimeout(() => {
+				navigate("/safetycommissioner")
+			}, 1200);
           }
           else if(safetyofficer && safetyofficer.username===values.email && safetyofficer.password===values.password){
             setRole("safetyofficer")
-            navigate("/safetyofficer")
+			setTimeout(() => {
+				navigate("/safetyofficer")
+			}, 1200);
           }
            else {
-			alert("Invalid email or password");
+			toast.error("Login Failed!")
 		  }
 		} catch (error) {
 		  console.error(error);
-		  alert("An error occurred during login");
+		  toast.error("An error occurred during login");
 		}
 	  };
 
 	return (
 		<div>
+		<Toaster/> 
 		{/* <Navbar/> */}
 		<div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "80vh" }}>
 		<Card style={{ width: 400, padding: 20, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
