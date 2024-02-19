@@ -3,7 +3,7 @@ import { BrowserRouter, Routes,Route } from 'react-router-dom'
 import Home from "./pages/Home"
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
-import Login from './pages/Login'
+
 import Analyst from './pages/Analyst'
 import Commissioner from './pages/Commissioner'
 import Manufacturer from './pages/Manufacturer'
@@ -16,7 +16,6 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup />}/>
         <Route path="/signin" element={<Signin />}/>
         <Route path="/analyst" element={<Analyst />}/>
