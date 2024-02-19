@@ -110,7 +110,7 @@ const Signin = () => {
 	<div>
 	<Toaster/>
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="max-w-lg">
+      <Card className="max-w-lg shadow-lg">
         <div className="flex justify-center items-center">
           <img
             src="https://img.freepik.com/free-vector/privacy-policy-concept-illustration_114360-7853.jpg?size=626&ext=jpg&ga=GA1.1.900017827.1707918895&semt=sph"
