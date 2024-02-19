@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Form, Input, Button, Card } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Toaster, toast } from "react-hot-toast";
+import { Link } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
+import contractaddress from "../artifacts/addresses/contract-address.json"
 // import Navbar from "../components/Navbar";
 const { ethers } = require("ethers");
 const abi=require('../artifacts/contracts/Crusader.sol/Crusader.json').abi
