@@ -8,7 +8,7 @@ import Analyst from './pages/Analyst'
 import Commissioner from './pages/Commissioner'
 import Manufacturer from './pages/Manufacturer'
 import Officer from './pages/Officer'
-
+import Forum from './pages/Forum'
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/safetycommissioner" element={<Commissioner />}/>
         <Route path="/manufacturer" element={<Manufacturer />}/>
         <Route path="/safetyofficer" element={<Officer />}/>
-  
+        <Route path="/forum" element={<Forum />}/>
 
 
       </Routes>
