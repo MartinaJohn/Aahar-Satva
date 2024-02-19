@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Card } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import contractaddress from "../artifacts/addresses/contract-address.json";
-import { useNavigate } from "react-router-dom";
-import { ethers } from "ethers";
-import abi from "../artifacts/contracts/Crusader.sol/Crusader.json";
-import { Link } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
+
+// import Navbar from "../components/Navbar";
+const { ethers } = require("ethers");
+const abi=require('../artifacts/contracts/Crusader.sol/Crusader.json').abi
 const Signin = () => {
   const [form] = Form.useForm();
   const [email, setEmail] = useState("");
@@ -45,64 +45,67 @@ const Signin = () => {
       try {
         console.log("working");
 
-        analyst = await contract.analysts(address);
-        console.log(analyst.username);
-      } catch (error) {
-        console.error("Error calling funders function: ", error);
-      }
-      try {
-        safetyofficer = await contract.safetyofficers(address);
-        console.log(safetyofficer.username);
-      } catch (error) {
-        console.error("Error calling funders function: ", error);
-      }
-      try {
-        safetycommissioner = await contract.safetycommissioners(address);
-      } catch (error) {
-        console.error("Error calling funders function: ", error);
-      }
+			analyst = await contract.analysts(address);
+            console.log(analyst.username)
+		  } catch (error) {
+			console.error("Error calling funders function: ", error);
+		  }
+          try{
+            safetyofficer=await contract.safetyofficers(address)
+            console.log(safetyofficer.username)
+          }
+          
+          catch(error){
+			console.error("Error calling funders function: ", error);
 
-      console.log("form ", email);
-      console.log("contract", manufacturer.username);
-      if (
-        manufacturer.username === values.email &&
-        manufacturer.password === values.password
-      ) {
-        console.log("form ", email);
-        console.log("contract", manufacturer.email);
-        setRole("manufacturer");
-        navigate("/manufacturer");
-      } else if (
-        analyst &&
-        analyst.username === values.email &&
-        analyst.password === values.password
-      ) {
-        setRole("analyst");
-        navigate("/analyst");
-      } else if (
-        safetycommissioner &&
-        safetycommissioner.username === values.email &&
-        safetycommissioner.password === values.password
-      ) {
-        setRole("safetycommissioner");
-        navigate("/safetycommissioner");
-      } else if (
-        safetyofficer &&
-        safetyofficer.username === values.email &&
-        safetyofficer.password === values.password
-      ) {
-        setRole("safetyofficer");
-        navigate("/safetyofficer");
-      } else {
-        alert("Invalid email or password");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("An error occurred during login");
-    }
-  };
+          }
+          try{
+            safetycommissioner=await contract.safetycommissioners(address)
+          }
+          catch(error){
+            console.error("Error calling funders function: ",error)
+          }
+
+    
+		  if (manufacturer.username === values.email && manufacturer.password === values.password) {
+      
+			setRole("manufacturer");
+			toast.success("Login successful!")
+			setTimeout(() => {
+				navigate("/manufacturer");
+			}, 1200); 
+			  
+		  } else if (analyst && analyst.username === values.email && analyst.password === values.password) {
+			setRole("analyst");
+			setTimeout(() => {
+				navigate("/analyst");
+			}, 1200);
+		  }
+         
+          else if(safetycommissioner && safetycommissioner.username===values.email && safetycommissioner.password===values.password){
+            setRole("safetycommissioner")
+			setTimeout(() => {
+				navigate("/safetycommissioner")
+			}, 1200);
+          }
+          else if(safetyofficer && safetyofficer.username===values.email && safetyofficer.password===values.password){
+            setRole("safetyofficer")
+			setTimeout(() => {
+				navigate("/safetyofficer")
+			}, 1200);
+          }
+           else {
+			toast.error("Login Failed!")
+		  }
+		} catch (error) {
+		  console.error(error);
+		  toast.error("An error occurred during login");
+		}
+	  };
 
   return(
+	<div>
+	<Toaster/>
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <Card className="max-w-lg">
         <div className="flex justify-center items-center">
@@ -163,6 +166,8 @@ const Signin = () => {
         </div>
       </Card>
     </div>
+		
+	</div>
   );
 };
 
