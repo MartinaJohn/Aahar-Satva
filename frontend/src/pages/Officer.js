@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const SpeechRecognitionForm = () => {
+const Officer = () => {
   const [speech, setSpeech] = useState({
     enabled: true,
     listening: false,
@@ -75,4 +75,4 @@ const SpeechRecognitionForm = () => {
   );
 };
 
-export default SpeechRecognitionForm;
+export default Officer;
