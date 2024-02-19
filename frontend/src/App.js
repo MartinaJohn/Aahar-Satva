@@ -3,10 +3,13 @@ import { BrowserRouter, Routes,Route } from 'react-router-dom'
 import Home from "./pages/Home"
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
+
 import Analyst from './pages/Analyst'
 import Commissioner from './pages/Commissioner'
 import Manufacturer from './pages/Manufacturer'
 import Officer from './pages/Officer'
+
+
 const App = () => {
   return (
     <div>
@@ -19,6 +22,8 @@ const App = () => {
         <Route path="/safetycommissioner" element={<Commissioner />}/>
         <Route path="/manufacturer" element={<Manufacturer />}/>
         <Route path="/safetyofficer" element={<Officer />}/>
+  
+
 
       </Routes>
     </BrowserRouter>
