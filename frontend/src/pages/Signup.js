@@ -79,7 +79,8 @@ const Signup = () => {
             <p>
               Please proceed to the <Link to="/signin">Signin Page</Link> to log in.
             </p>
-            <Button type="primary" onClick={handleReset}>
+            <br></br>
+            <Button type="primary bg-blue-700" onClick={handleReset}>
               Register Another User
             </Button>
           </div>

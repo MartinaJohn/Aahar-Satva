@@ -154,7 +154,7 @@ contract Crusader {
 
         foodProducts[msg.sender].push(newProduct);
         productsIdMapping[_id] = newProduct;
-        // Create a unique hash for the transaction
+     
         bytes32 txHash = keccak256(abi.encodePacked(msg.sender, _id));
 
         idToTxHash[_id] = txHash;
@@ -183,9 +183,6 @@ contract Crusader {
         return product;
     }
    
-
-
-
     // Function to approve the product by the food analyst
     function approveProductByFoodAnalyst(
         bytes32 _txHash
@@ -206,7 +203,8 @@ contract Crusader {
         foodAnalystApprovalTimestamps[productId] = block.timestamp;
         return product;
     }
-   
+  
+
     function approveProductByFSC(
         bytes32 _txHash
     ) public returns (ProductDetails memory) {
@@ -226,7 +224,7 @@ contract Crusader {
         foodSafetyComissionerTimestamps[productId] = block.timestamp;
         return product;
     }
-    
+  
     function getFoodSafetyOfficerApprover(uint _productId) public view returns (address) {
         return foodSafetyOfficerApprovers[_productId];
     }

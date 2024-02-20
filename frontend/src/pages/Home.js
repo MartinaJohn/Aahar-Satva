@@ -36,9 +36,9 @@ const Home = () => {
       </div>
     </section>
     <section className="bg-[#FFFFFF] py-16 flex items-center">
-  <div className="container mx-auto px-4 lg:flex lg:items-center">
-    <div className="lg:w-1/2">
-    <div className="flex justify-start my-1">
+  <div className="container mx-auto px-4 lg:flex lg:items-center mr-20 ml-20">
+    <div className="lg:w-1/2 ">
+    <div className="flex justify-start">
           <p className="text-sm font-semibold text-[#99582a]">EMBARK ON YOUR</p>
         </div>
         <h1 className="text-3xl mb-2 font-bold text-[#432818] tracking-tight text-start">Food Product Compliance Journey</h1>
