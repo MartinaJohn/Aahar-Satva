@@ -34,6 +34,8 @@ const App = () => {
         <Route path="/add-forum-posts" element={<Forum/>}/>
         <Route path="/product-details" element={<FullProductDetails />}/>
         <Route path="/manudocs" element={<ManufacturerCompany />}/>
+        <Route path="/product-details/:id" element={<FullProductDetails />} />
+
         <Route path="/file" element={<FileUpload/>}/>
         <Route path="/viewforum" element={<ViewForum />}></Route>
       </Routes>
