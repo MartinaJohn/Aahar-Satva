@@ -51,6 +51,7 @@ contract Crusader{
     
 
     struct ProductDetails {
+        uint id;
         string name;
         string[] ingredients;
         uint[] quantity;
@@ -63,53 +64,66 @@ contract Crusader{
         uint carbohydratePercentage;
     }
 
-    ProductDetails[] public products;
+    //ProductDetails[] public products;
     uint public totalProducts;
+    mapping(uint => ProductDetails) public productsIdMapping;
+    // mapping(address => Product[]) public bloodSamples;
 
+    mapping(address => string) public manufacturerAadhar;
+    function setManufacturerAadhar(string memory _url) public {
+    // Check if the sender is a registered manufacturer
+    require(bytes(manufacturers[msg.sender].username).length >  0, "Not a registered manufacturer");
+
+    // Set the URL for the manufacturer
+    manufacturerAadhar[msg.sender] = _url;
+}
+
+    mapping(address=>string)public manufacturerReports;
+    function setManufacturerReport(string memory _url) public{
+        require(bytes(manufacturers[msg.sender].username).length>0,"Not a registered manufacturer");
+        manufacturerReports[msg.sender]=_url;
+    }
+
+    
     function addProduct(
-        string memory _name,
-        string[] memory _ingredients,
-        uint[] memory _quantity,
-        string memory _intendedUse,
-        string memory _functionalUse,
-        string memory _manufacturingProcess,
-        string memory _nutritionalBenefits,
-        uint _fatPercentage,
-        uint _proteinPercentage,
-        uint _carbohydratePercentage
-    ) public {
-        totalProducts++;
-        ProductDetails memory newProduct = ProductDetails({
-            name: _name,
-            ingredients: _ingredients,
-            quantity: _quantity,
-            intendedUse: _intendedUse,
-            functionalUse: _functionalUse,
-            manufacturingProcess: _manufacturingProcess,
-            nutritionalBenefits: _nutritionalBenefits,
-            fatPercentage: _fatPercentage,
-            proteinPercentage: _proteinPercentage,
-            carbohydratePercentage: _carbohydratePercentage
-        });
+    uint256 _id,
+    string memory _name,
+    string[] memory _ingredients,
+    uint[] memory _quantity,
+    string memory _intendedUse,
+    string memory _functionalUse,
+    string memory _manufacturingProcess,
+    string memory _nutritionalBenefits,
+    uint _fatPercentage,
+    uint _proteinPercentage,
+    uint _carbohydratePercentage
+) public {
+    // require(_id == totalProducts, "ID must be equal to totalProducts");
+    require(_ingredients.length == _quantity.length, "Ingredients and quantity arrays must have the same length");
 
-        products.push(newProduct);
-    }
+     totalProducts++;
+    ProductDetails memory newProduct = ProductDetails({
+        id: _id,
+        name: _name,
+        ingredients: _ingredients,
+        quantity: _quantity,
+        intendedUse: _intendedUse,
+        functionalUse: _functionalUse,
+        manufacturingProcess: _manufacturingProcess,
+        nutritionalBenefits: _nutritionalBenefits,
+        fatPercentage: _fatPercentage,
+        proteinPercentage: _proteinPercentage,
+        carbohydratePercentage: _carbohydratePercentage
+    });
 
-    function getProduct(uint _index) public view returns (ProductDetails memory) {
-        return products[_index];
-    }
+    //products.push(newProduct);
+    productsIdMapping[_id] = newProduct;
+}
+    
     function getTotalProducts() public view returns(uint){
         return totalProducts;
     }
-    // function getProductById(
-    //     uint _id
-    // )
-    // public view returns(ProductDetails memory){
-    //     for(uint i=0;i<products[msg.sender].length;i++){
-    //         if(products[msg.sender][i].id==_id){
-    //             return products[msg.sender][i];
-    //         }
-    //     }
-    //     revert("Blood sample not found");
-    // }
+     function getProductById(uint _id) public view returns (ProductDetails memory) {
+        return productsIdMapping[_id];
+    }
 }
