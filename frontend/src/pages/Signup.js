@@ -17,6 +17,7 @@ const Signup = () => {
     console.log(contractAddress)
     const contractABI=abi
     console.log(abi)
+    
   const handleSignup = async (values) => {
     try {
       if (typeof window.ethereum === 'undefined') {

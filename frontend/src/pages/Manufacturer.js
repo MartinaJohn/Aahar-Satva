@@ -121,11 +121,13 @@ const contractABI=abi
       <Form.Item name="carbohydratePercentage" label="Carbohydrate Percentage" rules={[{ required: true }]}>
         <Input type="number" />
       </Form.Item>
+      {/* tbd */}
       <Form.Item>
         <Button type="primary" htmlType="submit" className='bg-blue-700'>
           Add Product
         </Button>
       </Form.Item>
+      
       </Form>
     
       </Card>
