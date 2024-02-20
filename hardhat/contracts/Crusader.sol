@@ -67,6 +67,13 @@ contract Crusader {
         Approved,
         Rejected
     }
+    mapping(uint => address) public foodSafetyOfficerApprovers;
+    mapping(uint => uint) public foodSafetyOfficerApprovalTimestamps;
+    mapping(uint => address) public foodAnalystApprovers;
+    mapping(uint => uint) public foodAnalystApprovalTimestamps;
+    mapping(uint => address) public foodSafetyComissionerApprovers;
+    mapping(uint => uint) public foodSafetyComissionerTimestamps;
+
 
     struct ProductDetails {
         uint id;
@@ -81,8 +88,14 @@ contract Crusader {
         uint proteinPercentage;
         uint carbohydratePercentage;
         ApprovalStatus foodSafetyOfficerApproval;
+        // uint foodSafetyOfficerApprovalTimestamp;
+        // address foodSafetyOfficerApprover;
         ApprovalStatus foodAnalystApproval;
+        // uint foodAnalystApprovalTimestamp;
+        // address foodAnalystApprover;
         ApprovalStatus fscApproval;
+        // uint fscApprovalTimestamp;
+        // address fscApprover;
     }
 
     // ProductDetails[] public products;
@@ -93,6 +106,22 @@ contract Crusader {
     mapping(uint => bytes32) public idToTxHash; //for qrcode
     mapping(bytes32 => uint) public txHashToProductId;
 
+    
+
+    function getAllProducts() public view returns (ProductDetails[] memory) {
+        return foodProducts[msg.sender];
+    }
+
+    function getProductById(
+        uint _id
+    ) public view returns (ProductDetails memory) {
+        return productsIdMapping[_id];
+    }
+
+    // qr code
+    function getIdtoTxHash(uint _id) public view returns (bytes32) {
+        return idToTxHash[_id];
+    }
     function addProduct(
         uint256 _id,
         string memory _name,
@@ -125,28 +154,13 @@ contract Crusader {
 
         foodProducts[msg.sender].push(newProduct);
         productsIdMapping[_id] = newProduct;
-        // Create a unique hash for the transaction
+     
         bytes32 txHash = keccak256(abi.encodePacked(msg.sender, _id));
 
         idToTxHash[_id] = txHash;
         txHashToProductId[txHash] = _id;
     }
 
-    function getAllProducts() public view returns (ProductDetails[] memory) {
-        return foodProducts[msg.sender];
-    }
-
-    function getProductById(
-        uint _id
-    ) public view returns (ProductDetails memory) {
-        return productsIdMapping[_id];
-    }
-
-    // qr code
-    function getIdtoTxHash(uint _id) public view returns (bytes32) {
-        return idToTxHash[_id];
-    }
-<<<<<<< HEAD
 
     // Function to approve the product by the food safety officer
     function approveProductByFoodSafetyOfficer(
@@ -164,9 +178,11 @@ contract Crusader {
             "Product already approved or rejected by food safety officer"
         );
         product.foodSafetyOfficerApproval = ApprovalStatus.Approved;
+        foodSafetyOfficerApprovers[productId] = msg.sender;
+        foodSafetyOfficerApprovalTimestamps[productId] = block.timestamp;
         return product;
     }
-
+   
     // Function to approve the product by the food analyst
     function approveProductByFoodAnalyst(
         bytes32 _txHash
@@ -183,8 +199,11 @@ contract Crusader {
             "Product already approved or rejected by food analyst"
         );
         product.foodAnalystApproval = ApprovalStatus.Approved;
+        foodAnalystApprovers[productId] = msg.sender;
+        foodAnalystApprovalTimestamps[productId] = block.timestamp;
         return product;
     }
+  
 
     function approveProductByFSC(
         bytes32 _txHash
@@ -201,22 +220,34 @@ contract Crusader {
             "Product already approved or rejected by manufacturer"
         );
         product.fscApproval = ApprovalStatus.Approved;
+        foodSafetyComissionerApprovers[productId] = msg.sender;
+        foodSafetyComissionerTimestamps[productId] = block.timestamp;
         return product;
     }
-}
-=======
-     mapping(address => string) public manufacturerAadhar;
-    function setManufacturerAadhar(string memory _url) public {
-    // Check if the sender is a registered manufacturer
-    require(bytes(manufacturers[msg.sender].username).length >  0, "Not a registered manufacturer");
+  
+    function getFoodSafetyOfficerApprover(uint _productId) public view returns (address) {
+        return foodSafetyOfficerApprovers[_productId];
+    }
 
-    // Set the URL for the manufacturer
-    manufacturerAadhar[msg.sender] = _url;
+    function getFoodSafetyOfficerApprovalTimestamp(uint _productId) public view returns (uint) {
+        return foodSafetyOfficerApprovalTimestamps[_productId];
     }
-    mapping(address=>string)public manufacturerReports;
-    function setManufacturerReport(string memory _url) public{
-        require(bytes(manufacturers[msg.sender].username).length>0,"Not a registered manufacturer");
-        manufacturerReports[msg.sender]=_url;
+
+    // Getter functions for foodAnalystApprovers
+    function getFoodAnalystApprover(uint _productId) public view returns (address) {
+        return foodAnalystApprovers[_productId];
+    }
+
+    function getFoodAnalystApprovalTimestamp(uint _productId) public view returns (uint) {
+        return foodAnalystApprovalTimestamps[_productId];
+    }
+
+    // Getter functions for foodSafetyComissionerApprovers
+    function getFoodSafetyComissionerApprover(uint _productId) public view returns (address) {
+        return foodSafetyComissionerApprovers[_productId];
+    }
+
+    function getFoodSafetyComissionerApprovalTimestamp(uint _productId) public view returns (uint) {
+        return foodSafetyComissionerTimestamps[_productId];
     }
 }
->>>>>>> 370368741c048630173d816698a40b9886d208db
