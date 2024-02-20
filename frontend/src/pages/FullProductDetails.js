@@ -2,9 +2,9 @@ import {React,useState,useEffect} from 'react'
 import QRcode from "../components/QRCode";
 import { useParams } from 'react-router-dom';
 import { Button, Flex, QRCode } from 'antd';
-
+import abi from "../artifacts/contracts/Crusader.sol/Crusader.json"
 import contractaddress from "../artifacts/addresses/contract-address.json"
-const abi=require('../artifacts/contracts/Crusader.sol/Crusader.json').abi
+
 const{ethers}=require("ethers")
 const FullProductDetails = () => {
     const { id } = useParams();
@@ -36,12 +36,12 @@ const FullProductDetails = () => {
             <p><b>Name: </b>{product.name}</p>
                     <p><b>Id: </b>{product.id.toString()}</p>
                     {/* <p><b>Ingredient </b>{bloodSample.ingredu=.toString()}</p> */}
-                    <p><b>Blood Group: </b>{product.intendedUse}</p>
-                    <p><b>Carbohydrate: </b>{product.carbohydratePercentage}</p>
-                    <p><b>Fat percentage: </b>{product.fatPercentage}</p>
-                    <p><b>Protein percentage: </b>{product.proteinPercentage}</p>
+                    <p><b>Intended use: </b>{product.intendedUse}</p>
+                    <p><b>Carbohydrate percentage: </b>{product.carbohydratePercentage.toString()}</p>
+                    <p><b>Fat percentage: </b>{product.fatPercentage.toString()}</p>
+                    <p><b>Protein percentage: </b>{product.proteinPercentage.toString()}</p>
                     <p><b>Manufacturing process: </b>{product.manufacturingProcess}</p>
-                    <QRCode id={product.id.toString()}/>
+                    <QRcode id={product.id.toString()}/>
             </>
         )
       }

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Input, QRCode, Space } from 'antd';
-
+import abi from "../artifacts/contracts/Crusader.sol/Crusader.json"
 import contractaddress from "../artifacts/addresses/contract-address.json"
-const abi=require('../artifacts/contracts/Crusader.sol/Crusader.json')
+
 const { ethers } = require("ethers");
 
 const QRcode= ({id}) => {
     const [transactionHash, setTransactionHash] = useState(null);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(contractaddress, abi, signer);
+    const contract = new ethers.Contract(contractaddress, abi.abi, signer);
     useEffect(() => {
         const fetchTransactionHash = async () => {
             const hash = await contract.getIdtoTxHash(id);
