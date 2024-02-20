@@ -12,6 +12,7 @@ import ManufacturerDocs from './pages/ManufacturerDocs'
 
 import Forum from './pages/Forum'
 import FMDashboard from './pages/FMDashboard'
+import FullProductDetails from './pages/FullProductDetails'
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/docs" element={<ManufacturerDocs />}/>
         <Route path="/fmdashboard" element={<FMDashboard />}></Route>
         <Route path="/add-forum-posts" element={<Forum/>}/>
+        <Route path="/product/0" element={<FullProductDetails />}/>
       </Routes>
     </BrowserRouter>
     </div>

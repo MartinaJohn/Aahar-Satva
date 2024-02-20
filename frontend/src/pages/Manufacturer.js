@@ -47,8 +47,9 @@ const contractABI=abi
       if(values!=null){
         await contract.addProduct(values.name,ingredients,quantities,values.intendedUse,values.functionalUse,values.manufacturingProcess,values.nutritionalBenefits,values.fatPercentage,values.proteinPercentage,values.carbohydratePercentage)
         message.success('Product added!')
-        console.log(contract.getProduct())
-        console.log(contract)
+        const firstproduct=await contract.getProduct(0)
+        console.log(firstproduct)
+        // console.log(contract)
         form.resetFields()
       }
       else {
