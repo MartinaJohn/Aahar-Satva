@@ -48,62 +48,7 @@ contract Crusader{
     }
 
     
-    function authenticate(
-        address _address,
-        string memory _username,
-        string memory _password
-    ) public view returns (bool) {
-        Profile memory manufacturer = manufacturers[_address];
-        Profile memory safetycommissioner = safetycommissioners[_address];
-        Profile memory safetyofficer=safetyofficers[_address];
-        Profile memory analyst=analysts[_address];
-
-
-        if (
-            keccak256(abi.encodePacked(manufacturer.entity)) ==
-            keccak256(abi.encodePacked("manufacturer")) &&
-            keccak256(abi.encodePacked(manufacturer.username)) ==
-            keccak256(abi.encodePacked(_username)) &&
-            keccak256(abi.encodePacked(manufacturer.password)) ==
-            keccak256(abi.encodePacked(_password))
-        ) {
-            return true;
-        }
-
-         if (
-            keccak256(abi.encodePacked(safetycommissioner.entity)) ==
-            keccak256(abi.encodePacked("safetycommissioner")) &&
-            keccak256(abi.encodePacked(safetycommissioner.username)) ==
-            keccak256(abi.encodePacked(_username)) &&
-            keccak256(abi.encodePacked(safetycommissioner.password)) ==
-            keccak256(abi.encodePacked(_password))
-        ) {
-            return true;
-        }
-
-        if (
-            keccak256(abi.encodePacked(analyst.entity)) ==
-            keccak256(abi.encodePacked("analyst")) &&
-            keccak256(abi.encodePacked(analyst.username)) ==
-            keccak256(abi.encodePacked(_username)) &&
-            keccak256(abi.encodePacked(analyst.password)) ==
-            keccak256(abi.encodePacked(_password))
-        ) {
-            return true;
-        }
-        
-        if(
-            keccak256(abi.encodePacked(safetyofficer.entity)) ==
-            keccak256(abi.encodePacked("safetyofficer")) &&
-            keccak256(abi.encodePacked(safetyofficer.username)) ==
-            keccak256(abi.encodePacked(_username)) &&
-            keccak256(abi.encodePacked(safetyofficer.password)) ==
-            keccak256(abi.encodePacked(_password))
-        ){
-            return true;
-        }
-        return false;
-    }
+    
 
     struct ProductDetails {
         string name;
@@ -119,6 +64,7 @@ contract Crusader{
     }
 
     ProductDetails[] public products;
+    uint public totalProducts;
 
     function addProduct(
         string memory _name,
@@ -132,6 +78,7 @@ contract Crusader{
         uint _proteinPercentage,
         uint _carbohydratePercentage
     ) public {
+        totalProducts++;
         ProductDetails memory newProduct = ProductDetails({
             name: _name,
             ingredients: _ingredients,
@@ -151,4 +98,18 @@ contract Crusader{
     function getProduct(uint _index) public view returns (ProductDetails memory) {
         return products[_index];
     }
+    function getTotalProducts() public view returns(uint){
+        return totalProducts;
+    }
+    // function getProductById(
+    //     uint _id
+    // )
+    // public view returns(ProductDetails memory){
+    //     for(uint i=0;i<products[msg.sender].length;i++){
+    //         if(products[msg.sender][i].id==_id){
+    //             return products[msg.sender][i];
+    //         }
+    //     }
+    //     revert("Blood sample not found");
+    // }
 }

@@ -8,7 +8,12 @@ import Analyst from './pages/Analyst'
 import Commissioner from './pages/Commissioner'
 import Manufacturer from './pages/Manufacturer'
 import Officer from './pages/Officer'
+
 import Forum from './pages/Forum'
+import FMDashboard from './pages/FMDashboard'
+import FullProductDetails from './pages/FullProductDetails'
+
+import FileUpload from './pages/FileUpload'
 
 const App = () => {
   return (
@@ -22,8 +27,12 @@ const App = () => {
         <Route path="/safetycommissioner" element={<Commissioner />}/>
         <Route path="/manufacturer" element={<Manufacturer />}/>
         <Route path="/safetyofficer" element={<Officer />}/>
+  
+        <Route path="/fmdashboard" element={<FMDashboard />}></Route>
+        <Route path="/add-forum-posts" element={<Forum/>}/>
+        <Route path="/product-details" element={<FullProductDetails />}/>
 
-        <Route path="/forum" element={<Forum/>}/>
+        <Route path="/file" element={<FileUpload/>}/>
       </Routes>
     </BrowserRouter>
     </div>
