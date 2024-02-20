@@ -19,11 +19,14 @@ import ViewForum from './pages/ViewForum'
 import Flowchart from './components/Flowdiag'
 import Flowdiag from './components/Flowdiag'
 
+import FullProductTimeline from "./pages/FullProductTimeline"
+
 const App = () => {
   return (
     <div>
     <BrowserRouter>
       <Routes>
+      
         <Route path="/" element={<Home/>}/>
         <Route path="/signup" element={<Signup />}/>
         <Route path="/signin" element={<Signin />}/>
@@ -36,10 +39,17 @@ const App = () => {
         <Route path="/add-forum-posts" element={<Forum/>}/>
         <Route path="/product-details" element={<FullProductDetails />}/>
         <Route path="/manudocs" element={<ManufacturerCompany />}/>
+        
         <Route path="/product-details/:id" element={<FullProductDetails />} />
+        <Route path="/product-dets/:id" element={<FullProductTimeline />} />
+
         <Route path="/flow" element={<Flowdiag />}/>
         <Route path="/file" element={<FileUpload/>}/>
-        <Route path="/viewforum" element={<ViewForum />}></Route>
+        <Route path="/viewforum" element={<ViewForum />}>
+
+        
+        </Route>
+     
       </Routes>
     </BrowserRouter>
     </div>

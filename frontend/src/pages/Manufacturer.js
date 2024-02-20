@@ -67,7 +67,7 @@ const contractABI=abi
     }
     catch(error){
       console.error(error)
-      alert("Not authorized")
+      //alert("Not authorized")
     }
   }
   return (
