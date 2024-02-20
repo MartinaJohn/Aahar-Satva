@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/fmdashboard" element={<FMDashboard />}></Route>
         <Route path="/add-forum-posts" element={<Forum/>}/>
         <Route path="/product-details" element={<FullProductDetails />}/>
-
+        <Route path="/manudocs" element={<ManufacturerDocs />}/>
         <Route path="/file" element={<FileUpload/>}/>
       </Routes>
     </BrowserRouter>
