@@ -43,6 +43,7 @@ const FullProductDetails = () => {
                     <p><b>Manufacturing process: </b>{product.manufacturingProcess}</p>
                     <QRcode id={product.id.toString()}/>
             </>
+            
         )
       }
     </div>

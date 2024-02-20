@@ -122,6 +122,7 @@ const contractABI=abi
         <Input type="number" />
       </Form.Item>
       {/* tbd */}
+      
       <Form.Item>
         <Button type="primary" htmlType="submit" className='bg-blue-700'>
           Add Product
