@@ -8,6 +8,7 @@ import Analyst from './pages/Analyst'
 import Commissioner from './pages/Commissioner'
 import Manufacturer from './pages/Manufacturer'
 import Officer from './pages/Officer'
+import ManufacturerDocs from './pages/ManufacturerDocs'
 
 
 const App = () => {
@@ -22,8 +23,7 @@ const App = () => {
         <Route path="/safetycommissioner" element={<Commissioner />}/>
         <Route path="/manufacturer" element={<Manufacturer />}/>
         <Route path="/safetyofficer" element={<Officer />}/>
-  
-
+        <Route path="/docs" element={<ManufacturerDocs />}/>
 
       </Routes>
     </BrowserRouter>
