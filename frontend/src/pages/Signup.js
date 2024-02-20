@@ -70,8 +70,8 @@ const Signup = () => {
   return (
     <div>
       {/* <Navbar/> */}
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
-      <Card style={{ width: 400, padding: 20, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.25)" }}>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <Card className="max-w-2xl shadow-lg">
         {registered ? (
           <div>
             <h2>Registration Successful!</h2>
@@ -83,9 +83,15 @@ const Signup = () => {
             </Button>
           </div>
         ) : (
-          <div>
-            <h2 style={{ textAlign: "center" }}>User Signup</h2>
-            <Form form={form} onFinish={handleSignup}>
+          <div className="flex justify-center items-center">
+          <img
+            src="https://img.freepik.com/free-vector/online-world-concept-illustration_114360-2212.jpg?w=740&t=st=1708364698~exp=1708365298~hmac=748dfd68ac4777e77d03af6f5e2f57bf3c111f17b0cf73d34c39581e9dfafed7"
+            alt="Privacy policy concept illustration"
+            className="object-cover rounded-lg w-3/6 h-full"
+          />
+            <div className="w-2/3 p-4">
+            <h2 className="text-2xl font-bold mb-4" >User Signup</h2>
+            <Form form={form} onFinish={handleSignup} className="space-y-4">
               <Form.Item
                 name="email"
                 rules={[
@@ -93,19 +99,19 @@ const Signup = () => {
                   { type: "email", message: "Please enter a valid email" },
                 ]}
               >
-                <Input prefix={<UserOutlined />} placeholder="Email" />
+                <Input prefix={<UserOutlined />} placeholder="Email" className="w-full" />
               </Form.Item>
               <Form.Item
                 name="password"
                 rules={[{ required: true, message: "Please enter your password" }]}
               >
-                <Input.Password prefix={<LockOutlined />} placeholder="Password" />
+                <Input.Password prefix={<LockOutlined />} placeholder="Password" className="w-full" />
               </Form.Item>
               <Form.Item
                 name="role"
                 rules={[{ required: true, message: "Please select a role" }]}
               >
-                <Select placeholder="Select Role">
+                <Select placeholder="Select Role" className="w-full">
                   <Option value="manufacturer">Food manufacturer</Option>
                   <Option value="analyst">Food Analyst</Option>
                   <Option value="safetyofficer">Food Safety Officer</Option>
@@ -115,11 +121,12 @@ const Signup = () => {
                 </Select>
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit" style={{ width: "100%", fontSize: "15px"}}>
+                <Button type="primary" htmlType="submit"  className="w-full bg-blue-700">
                   Signup
                 </Button>
               </Form.Item>
             </Form>
+            </div>
           </div>
         )}
       </Card>
