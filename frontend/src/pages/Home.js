@@ -2,16 +2,19 @@ import React from 'react';
 import { Button } from 'antd';
 import Nav from '../components/Nav';
 import Service from '../components/Service';
+import { Link } from 'react-router-dom';
+
+import Footer from '../components/Footer';
 const Home = () => {
   return (
     <div className="bg-white">
-        <Nav/>
+      
 
       <section className="bg-cover bg-center bg-no-repeat h-screen mt-12" style={{ backgroundImage: "url('https://i.ibb.co/WkCw5gL/Untitled-design-8.png')" }}>
       <div className="container mx-auto pt-10 px-4 flex flex-col justify-start items-center h-full text-brown ">
         <h1 className="text-4xl font-bold mb-4 sm:text-5xl text-center">#Savor Safety, Taste Transparency</h1>
         <p className="text-lg mb-8 sm:text-xl text-center">Ensuring trust and confidence in the food we consume.</p>
-        <Button type="font-bold shadow-lg border-black border-2 hover:bg-[#432818] hover:text-white shadow-lg " size="large">Join Us by Registering</Button>
+        <Button type="font-bold shadow-lg border-black border-2 hover:bg-[#432818] hover:text-white shadow-lg " size="large"><Link to='/signup'>Join Us by Registering</Link></Button>
       </div>
     </section>
     <section className='ml-24 mr-24'>
@@ -29,7 +32,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold mb-8 text-[#432818]">Join Our Food Safety Awareness Campaign</h2>
           <p className="text-lg mb-8 text-[#432818]">Stay informed and contribute to food safety awareness. <br/>Get updates and valuable resources directly to your inbox!</p>
           <div className="flex">
-            <Button type=" font-bold shadow-lg border-black border-2 hover:bg-[#432818] hover:text-white shadow-lg " size="large">Check Latest Updates Now</Button>
+            <Button type=" font-bold shadow-lg border-black border-2 hover:bg-[#432818] hover:text-white shadow-lg " size="large"><Link to='/viewforum'>Check Latest Updates Now</Link></Button>
           </div>
           <p className="mt-8 text-[#432818]">Use <span className="text-[#6f1d1b] font-bold">#FoodSafetyFirst</span> to spread the word!</p>
         </div>
@@ -46,7 +49,7 @@ const Home = () => {
       
       <p className="text-lg mb-8 text-[#432818]">Navigate the complexities of food product compliance with ease to ensure your food products meet all regulatory requirements.</p>
       <div className="flex">
-        <Button type=" font-bold shadow-lg border-black border-2 hover:bg-[#432818] hover:text-white shadow-lg " size="large">Track Now</Button>
+        <Button type="Link" className="font-bold shadow-lg border-black border-2 hover:bg-[#432818] hover:text-white shadow-lg " size="large">Track Now</Button>
       </div>
       <p className="mt-8 text-[#432818]">Join us in promoting food safety with <span className="text-[#6f1d1b] font-bold">#ComplianceQuest</span>!</p>
     </div>
@@ -57,11 +60,6 @@ const Home = () => {
 </section>
 
 
-    <footer className="bg-[#432818] text-white py-8">
-  <div className="container mx-auto px-4">
-    <p className="text-center mb-4">Made with ❤️ by Team Code Crusaders</p>
-  </div>
-</footer>
 
     </div>
   );
