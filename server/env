@@ -1,0 +1,2 @@
+MONGODB_URI='mongodb+srv://martina:YC53u0Zd6gvNKE2Z@cluster0.wck5ngh.mongodb.net/'
+PORT=5000
