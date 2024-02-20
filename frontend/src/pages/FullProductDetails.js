@@ -15,9 +15,9 @@ const FullProductDetails = () => {
         const signer = provider.getSigner();
         const contractABI=abi.abi
         const contract = new ethers.Contract(contractaddress, contractABI, signer);
-        const sample = await contract.getProductById(id);
-        console.log(sample.timestamp)
-        setProduct(sample);
+        const product = await contract.getProductById(id);
+        //console.log(sample.timestamp)
+        setProduct(product);
     }
     useEffect(() => {
         fetchProduct();
