@@ -13,7 +13,9 @@ import Forum from './pages/Forum'
 import FMDashboard from './pages/FMDashboard'
 import FullProductDetails from './pages/FullProductDetails'
 
-import FileUpload from './pages/FileUpload'
+import FileUpload from './components/FileUpload'
+import ManufacturerCompany from './pages/ManufacturerCompany'
+import ViewForum from './pages/ViewForum'
 
 const App = () => {
   return (
@@ -30,9 +32,12 @@ const App = () => {
   
         <Route path="/fmdashboard" element={<FMDashboard />}></Route>
         <Route path="/add-forum-posts" element={<Forum/>}/>
+        <Route path="/product-details" element={<FullProductDetails />}/>
+        <Route path="/manudocs" element={<ManufacturerCompany />}/>
         <Route path="/product-details/:id" element={<FullProductDetails />} />
 
         <Route path="/file" element={<FileUpload/>}/>
+        <Route path="/viewforum" element={<ViewForum />}></Route>
       </Routes>
     </BrowserRouter>
     </div>

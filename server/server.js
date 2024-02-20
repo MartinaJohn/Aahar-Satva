@@ -15,10 +15,37 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 const postSchema = new mongoose.Schema({
   content: String,
+ 
   date: { type: Date, default: Date.now },
+  // likes: [{ type: Schema.Types.ObjectId, ref: 'User' }//],
+  likes: { type: Number, default:  0 } // Add this line
+
 });
 
 const Post = mongoose.model('Post', postSchema);
+
+app.post('/api/posts/:id/like', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    post.likes +=  1; // Increment the likes
+    await post.save(); // Save the updated post
+    res.json(post);
+  } catch (error) {
+    res.status(500).json({ message: 'Error liking post', error });
+  }
+});
+
+app.get('/api/posts/most-liked', async (req, res) => {
+  try {
+    const mostLikedPosts = await Post.find().sort({ likes: -1 }).limit(3);
+    res.json(mostLikedPosts);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching most liked posts', error });
+  }
+});
 
 app.get('/api/posts', async (req, res) => {
   const posts = await Post.find();

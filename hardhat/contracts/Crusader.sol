@@ -146,6 +146,7 @@ contract Crusader {
     function getIdtoTxHash(uint _id) public view returns (bytes32) {
         return idToTxHash[_id];
     }
+<<<<<<< HEAD
 
     // Function to approve the product by the food safety officer
     function approveProductByFoodSafetyOfficer(
@@ -203,3 +204,19 @@ contract Crusader {
         return product;
     }
 }
+=======
+     mapping(address => string) public manufacturerAadhar;
+    function setManufacturerAadhar(string memory _url) public {
+    // Check if the sender is a registered manufacturer
+    require(bytes(manufacturers[msg.sender].username).length >  0, "Not a registered manufacturer");
+
+    // Set the URL for the manufacturer
+    manufacturerAadhar[msg.sender] = _url;
+    }
+    mapping(address=>string)public manufacturerReports;
+    function setManufacturerReport(string memory _url) public{
+        require(bytes(manufacturers[msg.sender].username).length>0,"Not a registered manufacturer");
+        manufacturerReports[msg.sender]=_url;
+    }
+}
+>>>>>>> 370368741c048630173d816698a40b9886d208db
