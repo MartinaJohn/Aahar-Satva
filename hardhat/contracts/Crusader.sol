@@ -1,4 +1,4 @@
-//SPDX-License-Identifier: Unlicense
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
@@ -8,6 +8,7 @@ contract Crusader {
         string username;
         string password;
         string entity;
+           
     }
 
     //all have prefix 'food'
@@ -26,6 +27,7 @@ contract Crusader {
             _username,
             _password,
             "manufacturer"
+            
         );
         roleMapping[msg.sender] = "manufacturer";
     }
@@ -38,8 +40,22 @@ contract Crusader {
             _username,
             _password,
             "safetyofficer"
+           
         );
         roleMapping[msg.sender] = "safetyofficer";
+    }
+     mapping(address => string) public manufacturerAadhar;
+    function setManufacturerAadhar(string memory _url) public {
+    // Check if the sender is a registered manufacturer
+    require(bytes(manufacturers[msg.sender].username).length >  0, "Not a registered manufacturer");
+
+    // Set the URL for the manufacturer
+    manufacturerAadhar[msg.sender] = _url;
+}
+ mapping(address=>string) public manufacturerReports;
+    function setManufacturerReport(string memory _url) public{
+        require(bytes(manufacturers[msg.sender].username).length>0,"Not a registered manufacturer");
+        manufacturerReports[msg.sender]=_url;
     }
 
     function registerAnalyst(
@@ -58,6 +74,7 @@ contract Crusader {
             _username,
             _password,
             "safetycommissioner"
+           
         );
         roleMapping[msg.sender] = "safetycommissioner";
     }
@@ -250,4 +267,7 @@ contract Crusader {
     function getFoodSafetyComissionerApprovalTimestamp(uint _productId) public view returns (uint) {
         return foodSafetyComissionerTimestamps[_productId];
     }
+
+    
 }
+   

@@ -1,6 +1,6 @@
 import {React,useEffect,useState} from 'react'
 // import FileUpload from '../components/FileUpload'
-import { Form, Input, Button, Card, Select } from "antd";
+import { Form, Input, Button, Card, Select, message } from "antd";
 import contractaddress from "../artifacts/addresses/contract-address.json"
 
 import { create } from "ipfs-http-client";
@@ -17,6 +17,10 @@ const auth =
   Buffer.from(projectId + ":" + projectSecret).toString("base64");
 
 const ManufacturerCompany = () => {
+  const [companyName, setCompanyName] = useState('');
+  const [address, setAddress] = useState('');
+  const [establishedOn, setEstablishedOn] = useState('');
+
   const[hashUpload,setHashUpload]=useState(false)
   const contractAddress = contractaddress
 
@@ -80,7 +84,45 @@ const ManufacturerCompany = () => {
     }
     catch(error){}
   }
+
+  const handleSubmit = async (values) => {
+    try {
+      if (typeof window.ethereum === 'undefined') {
+        // MetaMask is not installed or not accessible
+        alert("Please install and unlock MetaMask to use this application.");
+        return;
+      }
+
+      // Connect to the MetaMask provider
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      console.log(provider)
+      // Request account access from the user
+      await provider.send("eth_requestAccounts", []);
+
+      // Get the signer
+      const signer = provider.getSigner();
+      console.log(signer)
+      // Create a contract instance
+      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+      if(values!=null){
+        message.success()
+      }
+      else {
+        alert("Invalid role");
+        return;
+      }
+
+      //setCompanyName(true);
+	  alert("success")
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred during signup");
+    }
+  };
+
   return (
+    
     <div>
     <input type="file" onChange={(e) => setFile(e.target.files[0])} />
     <button onClick={uploadFile}>Upload</button>
@@ -97,6 +139,33 @@ const ManufacturerCompany = () => {
     <br />
     <button onClick={getPdf}>Get</button>
       <Button onClick={handleUpload}>Upload</Button>
+      <Form onFinish={handleSubmit}>
+      <label>
+        Company Name:
+        <input
+          type="text"
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
+        />
+      </label>
+      <label>
+        Address:
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+      </label>
+      <label>
+        Established On:
+        <input
+          type="date"
+          value={establishedOn}
+          onChange={(e) => setEstablishedOn(e.target.value)}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </Form>
   </div>
   )
 }

@@ -99,7 +99,7 @@ const Service = () => {
             <Col key={e.title} xs={24} sm={12} md={8} lg={8}>
               <Card
                 hoverable
-                cover={<img alt={e.title} src={e.image} style={{ width: '100%', height: '400px', objectFit: 'cover' }}/>}
+                cover={<img alt={e.title} src={e.image} style={{ width: '100%', height: '250px', objectFit: 'cover' }}/>}
                 className={`group relative gap-4 overflow-clip rounded-xl shadow-lg ${
                   e.rowSpan ? `row-span-${e.rowSpan}` : ''
                 }`}
