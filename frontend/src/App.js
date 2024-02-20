@@ -8,7 +8,6 @@ import Analyst from './pages/Analyst'
 import Commissioner from './pages/Commissioner'
 import Manufacturer from './pages/Manufacturer'
 import Officer from './pages/Officer'
-import ManufacturerDocs from './pages/ManufacturerDocs'
 
 import Forum from './pages/Forum'
 import FMDashboard from './pages/FMDashboard'
@@ -28,7 +27,7 @@ const App = () => {
         <Route path="/safetycommissioner" element={<Commissioner />}/>
         <Route path="/manufacturer" element={<Manufacturer />}/>
         <Route path="/safetyofficer" element={<Officer />}/>
-        <Route path="/docs" element={<ManufacturerDocs />}/>
+  
         <Route path="/fmdashboard" element={<FMDashboard />}></Route>
         <Route path="/add-forum-posts" element={<Forum/>}/>
         <Route path="/product/0" element={<FullProductDetails />}/>
