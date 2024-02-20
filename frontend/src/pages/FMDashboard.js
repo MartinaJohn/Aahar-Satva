@@ -49,7 +49,7 @@ const abi=require('../artifacts/contracts/Crusader.sol/Crusader.json').abi
       dataIndex: 'id',
       key: 'id',
       render: (id, record) => (
-        <Link to={`/product-sample-details/${id}`}>{id ? id.toString() : ''} id</Link>
+        <Link to={`/product-details/${id}`}>{id ? id.toString() : ''}</Link>
       ),
       }
     // Add more columns for other properties

@@ -45,7 +45,7 @@ const contractABI=abi
       throw new Error('Quantity must be an array of numbers');
     }
       if(values!=null){
-        await contract.addProduct(values.name,ingredients,quantities,values.intendedUse,values.functionalUse,values.manufacturingProcess,values.nutritionalBenefits,values.fatPercentage,values.proteinPercentage,values.carbohydratePercentage)
+        await contract.addProduct(values.id,values.name,ingredients,quantities,values.intendedUse,values.functionalUse,values.manufacturingProcess,values.nutritionalBenefits,values.fatPercentage,values.proteinPercentage,values.carbohydratePercentage)
         message.success('Product added!')
         const firstproduct=await contract.getProduct(0)
         console.log(firstproduct)
@@ -88,6 +88,9 @@ const contractABI=abi
         
       </div>
       <Form form={form} onFinish={onFinish}>
+      <Form.Item name="id" label="Id" rules={[{required:true}]}>
+        <Input />
+      </Form.Item>
       <Form.Item name="name" label="Name" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
