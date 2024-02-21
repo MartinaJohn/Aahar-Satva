@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 const Home = () => {
   return (
     <div className="bg-white">
-      
+      <Nav/>
 
       <section className="bg-cover bg-center bg-no-repeat h-screen mt-12" style={{ backgroundImage: "url('https://i.ibb.co/WkCw5gL/Untitled-design-8.png')" }}>
       <div className="container mx-auto pt-10 px-4 flex flex-col justify-start items-center h-full text-brown ">
@@ -60,7 +60,7 @@ const Home = () => {
 </section>
 
 
-
+<Footer/>
     </div>
   );
 };

@@ -14,13 +14,13 @@ const items = [
     label: 'Forum',
     key: 'forum',
     icon: <MessageOutlined />,
-    href: '/Forum',
+    href: '/viewforum',
   },
   {
     label: 'Product Compliance Journey',
     key: 'journey',
     icon: <AppstoreOutlined />,
-    href: '/Journey',
+    href: '/product-dets/1',
   },
   {
     label: 'Login',
