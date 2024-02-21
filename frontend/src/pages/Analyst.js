@@ -99,13 +99,37 @@ const Analyst = () => {
     downloadLink.click();
   };
 
+  const approveProduct = async (qrCodeResult) => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      await provider.send("eth_requestAccounts", []);
+      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+  
+      // Ensure that qrCodeResult is a string representing a hexadecimal value
+      if (typeof qrCodeResult === 'string' && ethers.utils.isHexString(qrCodeResult)) {
+        // Convert the QR code result to bytes32
+        const txHashBytes32 = ethers.utils.arrayify(qrCodeResult);
+        const result = await contract.approveProductByFoodAnalyst(txHashBytes32);
+        console.log(result);
+      } else {
+        console.error('Invalid QR code result:', qrCodeResult);
+      }
+    } catch (error) {
+      console.error("Error approving product:", error);
+    }
+  };
+  
   return (
     <div>
      <div>
+     <label><b>Upload QR Code for approving</b></label>
       <input type="file" accept="image/*" onChange={handleFileChange} />
-       <p>{result}</p>
+       <p>QR Code : {result}</p>
      </div>
+     <label><b>Upload Report</b></label>
       <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+  
       <button onClick={uploadFile}>Upload</button>
       <br />
       {hash && (
@@ -119,7 +143,8 @@ const Analyst = () => {
       
       <br />
       <button onClick={getPdf}>Get</button>
-      <Button onClick={handleUpload}>Upload</Button>
+      {/* <Button onClick={handleUpload}>Upload</Button> */}
+      <Button onClick={() => approveProduct(result)}>Verify</Button>
       <Button onClick={handleUpload}>Upload geo-tagged image</Button>
     </div>
   );
