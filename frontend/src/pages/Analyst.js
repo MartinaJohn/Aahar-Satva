@@ -34,6 +34,7 @@ const Analyst = () => {
     }
     catch(error){}
   }
+  
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -47,13 +48,12 @@ const Analyst = () => {
         } catch (err) {
           console.error(err);
           setResult('Error reading QR code');
-        } finally {
-          qrCodeReader.reset();
         }
       };
       reader.readAsDataURL(file);
     }
   };
+  
   const [file, setFile] = useState(null);
   const [hash, setHash] = useState(null);
   const [link, setLink] = useState(null);
