@@ -1,5 +1,5 @@
 # crescendo2024
-We Bagged the 2nd Place🏆🏆
+🙌🏻🙌🏻We Bagged the 2nd Place🏆🏆
 ## Run Locally
 
 Clone the project
